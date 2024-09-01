@@ -5,14 +5,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: on-failure:5
+    restart: always
     container_name: hoyolab-auto
     network_mode: bridge
     volumes:
       - ./config.json5:/app/config.json5:ro
       - data:/app/data
     environment:
-      TZ: Asia/Shanghai
+      TZ: Etc/UTC
 
 volumes:
   config:
