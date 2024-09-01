@@ -9,26 +9,26 @@ COMPOSE_FILE := docker-compose.yml
 
 # Target: build (Builds your Docker image)
 build:
-	docker-compose -f $(COMPOSE_FILE) build
+	docker compose -f $(COMPOSE_FILE) build
 
 # Target: up (Starts your application in the background)
 up:
-	docker-compose -f $(COMPOSE_FILE) up -d
+	docker compose -f $(COMPOSE_FILE) up -d
 
 # Target: down (Stops and removes containers, networks)
 down:
-	docker-compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down
 
 # Target: restart (Restarts your application)
 restart: down up
 
 # Target: logs (Follows application logs)
 logs:
-	docker-compose -f $(COMPOSE_FILE) logs -f instance 
+	docker compose -f $(COMPOSE_FILE) logs -f instance 
 
 # Target: exec (Execute a command inside the running container)
 exec:
-	docker-compose -f $(COMPOSE_FILE) exec instance bash
+	docker compose -f $(COMPOSE_FILE) exec instance bash
 
 # Target: update (Rebuild and restart with latest changes)
 update: build restart 
