@@ -67,7 +67,8 @@ module.exports = {
 
 				await webhook.send(embed, {
 					author: message.assets.author,
-					icon: message.assets.logo
+					icon: message.assets.logo,
+					channel: "checkin",
 				});
 			}
 

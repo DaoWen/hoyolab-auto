@@ -10,6 +10,8 @@ module.exports = class Platform {
 	#chatId;
 	#data;
 	#disableNotification;
+	#checkinsURL;
+	#codesURL;
 
 	client;
 
@@ -36,6 +38,26 @@ module.exports = class Platform {
 				message: "Invalid URL provided for Webhook Platform.",
 				args: {
 					url: this.#url
+				}
+			});
+		}
+
+		this.#checkinsURL = config.checkinsURL ?? null;
+		if (this.#checkinsURL && !WEBHOOK_REGEX.test(this.#checkinsURL)) {
+			throw new app.Error({
+				message: "Invalid checkins URL provided for Webhook Platform.",
+				args: {
+					checkinsURL: this.#checkinsURL
+				}
+			});
+		}
+
+		this.#codesURL = config.codesURL ?? null;
+		if (this.#codesURL && !WEBHOOK_REGEX.test(this.#codesURL)) {
+			throw new app.Error({
+				message: "Invalid codes URL provided for Webhook Platform.",
+				args: {
+					codesURL: this.#codesURL
 				}
 			});
 		}
