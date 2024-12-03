@@ -24,8 +24,19 @@ module.exports = class Webhook extends require("./template.js") {
 			});
 		}
 
+		// pick which webhook channel to route to
+                let webhookURL = this.url;
+                switch (options.channel) {
+                    case "checkin":
+			webhookURL = this.checkinsURL ?? this.url;
+			break;
+		    case "code":
+			webhookURL = this.codesURL ?? this.url;
+			break;
+		}
+
 		const res = await app.Got("API", {
-			url: this.url,
+			url: webhookURL,
 			method: "POST",
 			responseType: "json",
 			throwHttpErrors: false,

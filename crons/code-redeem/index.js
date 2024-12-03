@@ -66,12 +66,12 @@ module.exports = {
 		if (webhook) {
 			for (const data of success) {
 				const message = buildMessage(true, data);
-				await webhook.send(message.embed);
+				await webhook.send(message.embed, {channel: "code"});
 			}
 
 			for (const data of failed) {
 				const message = buildMessage(false, data);
-				await webhook.send(message.embed);
+				await webhook.send(message.embed, {channel: "code"});
 			}
 		}
 	}
