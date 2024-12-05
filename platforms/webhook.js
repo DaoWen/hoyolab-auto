@@ -51,6 +51,11 @@ module.exports = class Webhook extends require("./template.js") {
 			}
 		});
 
+		app.Logger.debug("WebHook", {
+			statusCode: res.statusCode,
+			options: options,
+		});
+
 		if (res.statusCode !== 200) {
 			throw new app.Error({
 				message: "Failed to send webhook message",
